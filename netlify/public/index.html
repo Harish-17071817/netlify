@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Lot Name</title>
+</head>
+<body>
+    <h1>Random Lot Name Generator</h1>
+    <button id="generateButton">Generate Lot Name</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function () {
+            // Call the Netlify function
+            fetch('/.netlify/functions/generateLotName')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.lotName) {
+                        document.getElementById('result').innerText = `Generated Lot Name: ${data.lotName}`;
+                    } else {
+                        document.getElementById('result').innerText = 'No lot names available.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = 'An error occurred.';
+                });
+        });
+    </script>
+</body>
+</html>

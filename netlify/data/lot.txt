@@ -1,0 +1,1 @@
+lot1,lot2,lot3,lot4
